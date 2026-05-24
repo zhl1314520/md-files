@@ -3,6 +3,8 @@
 
 - ### wsl
 
+- ### hostname -I（查看 wsl 的 ip）
+
 - ### redis-server --version
 
 - ### sudo systemctl start redis-server
