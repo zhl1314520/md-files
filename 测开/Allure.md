@@ -6,7 +6,7 @@
 
 3. #### cmd 里面输入：allure serve allure-results
 
-## pytest [-k，-m，-v，-x]
+## pytest [-k，-m，-v，-x，-s]
 
 - #### pytest -k login：只要函数名包含 login 就执行
 
