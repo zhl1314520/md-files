@@ -28,9 +28,8 @@
 
 - #### pip install -r requirements.txt（虚拟环境被破坏）
 
-- ####  .\.venv\Scripts\Activate（文件中存在.venv虚拟环境，重新激活）
+- ####  .\.venv\Scripts\Activate（文件中存在.venv虚拟环境，重新激活）       
 
 
-
-
+​    
 

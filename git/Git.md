@@ -88,6 +88,20 @@ npm install
 npm run dev
 ```
 
+## Git 拉取项目中某个文件夹
+
+```bash
+git clone --filter=blob:none --no-checkout 仓库名.git
+
+cd 仓库
+
+git sparse-checkout init --cone
+
+git sparse-checkout set 所需文件夹名
+
+git checkout main
+```
+
 ## Git 回滚
 
 ```bash
