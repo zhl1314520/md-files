@@ -16,9 +16,7 @@
 
 
 
-### 
-
-## 命令行创建 venv
+## 虚拟环境 venv
 
 - #### 进入目录
 
@@ -26,9 +24,17 @@
 
 - #### .venv\Scripts\Activate（激活虚拟环境）
 
+- #### deactivate（退出虚拟环境）
+
 - #### pip install -r requirements.txt（虚拟环境被破坏）
 
-- ####  .\.venv\Scripts\Activate（文件中存在.venv虚拟环境，重新激活）       
+- ####  .\.venv\Scripts\Activate（文件中存在.venv虚拟环境，重新激活）     
+
+##  pip 
+
+- #### 查看某个包的信息
+
+  > #### pip show fastapi 
 
 
 ​    
