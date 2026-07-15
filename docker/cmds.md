@@ -34,10 +34,23 @@ chmod +x setup.sh
 
 ./setup.sh
 
-# 启动所有服务
+# 启动后端所有服务
 docker compose -f docker-compose-local.yml up -d
 
 # 查看后端各个服务启动情况（状态，端口）
 docker compose -f docker-compose-local.yml ps --format "table {{.Service}}\t{{.Status}}\t{{.Ports}}"
+
+# stop 后端服务
+docker compose -f docker-compose-local.yml stop
+```
+
+> Powershell 
+
+```shell
+# 分别启动前端
+pnpm --filter web dev
+pnpm --filter admin dev
+pnpm --filter space dev
+pnpm --filter live dev
 ```
 
