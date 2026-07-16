@@ -48,9 +48,11 @@ docker compose -f docker-compose-local.yml stop
 
 ```shell
 # 分别启动前端
+pnpm install
+pnpm run dev
+
 pnpm --filter web dev
 pnpm --filter admin dev
 pnpm --filter space dev
 pnpm --filter live dev
 ```
-
