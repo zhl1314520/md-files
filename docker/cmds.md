@@ -49,10 +49,22 @@ docker compose -f docker-compose-local.yml stop
 ```shell
 # 分别启动前端
 pnpm install
-pnpm run dev
+pnpm run dev		# plane 项目理论上可以，但是环境原因，无果。。。
+pnpm exec turbo run dev --concurrency=18 	# 启动，效果等同于 pnpm run dev
 
+# 多命令启动
 pnpm --filter web dev
 pnpm --filter admin dev
 pnpm --filter space dev
 pnpm --filter live dev
 ```
+
+> pnpm run dev 报错分析：
+>
+> - 前置条件：win-powershell 环境运行
+>   1. 尝试了 pnpm exec turbo run dev --concurrency=18，还是不能打开页面
+>   2. pnpm dev 也不行
+> - 解决：
+>   - 前置条件：使用 git bash 的 Linux 环境
+>   - pnpm run dev 打开
+> - 原因：windows 下 plane 的兼容性不如 linux 下的环境
