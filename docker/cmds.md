@@ -71,3 +71,28 @@ pnpm run dev
 > - 原因：
 >   1. node 子进程未退出
 >   2. 之前取消 git 代理配置，忘了重新配置了，导致连接不稳定
+
+> i18n 显示不出中文包、页面元素名称问题（页面出现的是 key，如 settings.features.module，而不是 module）:
+>
+> - 前置条件：前后端都正常，i18n 也正常
+>
+> - 尝试解决：
+>
+>   1. 找 i18n 下面的 package.js 文件，排除
+>   2. 找 zh-cn，en 文件，都有，排除
+>   3. F12 找报错，排除
+>
+> - 解决：
+>
+>   1. 删除了损坏的 packages/i18n/locales 文本文件
+>
+>   2. 创建了一个 Windows Junction （目录联接） packages/i18n/locales → packages/i18n/src/locales
+>      Junction 类似于快捷方式/符号链接，访问 packages/i18n/locales/en/common.json 时会透明地解析到 packages/i18n/src/locales/en/common.json 。
+>
+>      文件没有移动，只是修复了链接，让 dist/index.js 中的 import("../locales/...") 能正确找到 locale 文件。
+>
+> - 原因：
+>
+>   - packages/i18n/locales 是一个 Git 符号链接 （指向 src/locales ），但在 Windows 上 Git 默认不创建真正的符号链接，只生成了一个包含 src/locales 文本的普通文件。
+>
+>     i18n 的动态导入 import(\ ../locales/ [ o bj ec tO bj ec t ] l an gu a g e / {namespace}.json`) 从 dist/index.js 解析时， ../locales/ 指向这个损坏的"文件"，导致所有 locale 文件无法加载，i18next 找不到翻译值，直接返回原始 key 字符串如 common.display`
