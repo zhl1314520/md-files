@@ -6,7 +6,6 @@
 
 
 
-
 现在的问题：
 ”项目“下面的各个项目卡片缺少”修改“按钮
 你的任务：
@@ -108,3 +107,71 @@ Emoji 作为功能图标
  真实图片：使用 Pexels 搜索 ( `https://www.pexels.com)`  
  插画：使用 unDraw ( `https://undraw.co)` 
  现在大胆开始设计吧。
+
+
+### 1. 硬编码问题（严重）
+- conftest.py:51 — "admin", "zxcvbnm" 用户名密码直接写死在 fixture 中
+- utils/get_token_util.py:9-10 — 同样硬编码了账号密码
+- tests/ui/test_product.py:46 — 文件路径 r"D:\Desktop\html(3)\products.json" 写死绝对路径，换台电脑就跑不了
+- core/base_page.py:12 — 超时时间 10 写死
+企业级做法 ：所有测试数据、凭据、路径、超时值都应放配置文件或环境变量中，代码中零硬编码。
+
+### 2. 裸 except 吞异常（严重）
+- pages/login_page.py:42 — except: pass 直接吞掉所有异常
+- pages/product_page.py:34 、 43 、 53 等多处 — except: 无异常类型，出问题时完全无法排查
+企业级做法 ：必须指定具体异常类型（如 TimeoutException ），至少 logging.warning 记录。
+
+### 3. 配置管理不规范（中等）
+- config/settings.py — SettingsBackend 和 SettingsFrontend 两个类代码几乎完全重复，违反 DRY 原则
+- 每次实例化都重新读文件 open("config/env.yaml") ，应只加载一次
+- 没有考虑环境变量覆盖（CI/CD 中常用）
+- 配置路径 "config/env.yaml" 是相对路径，非项目根目录运行会失败
+企业级做法 ：单例配置类 + 环境变量覆盖 + pathlib.Path 计算项目根目录的绝对路径。
+
+### 4. DriverManager 过于简陋（中等）
+- core/driver_manager.py — 只支持 Chrome，只有 13 行代码
+- 没有支持 Firefox/Edge 等多浏览器切换
+- 没有 headless 模式配置（CI 必需）
+- 没有远程 WebDriver 支持（Selenium Grid / Docker）
+- 没有驱动自动管理（如 webdriver-manager ）
+### 5. 日志系统不完善（中等）
+- BaseAPI 中有 logging 但没有配置 handler 和格式，日志可能不输出
+- UI 层完全没有日志
+- 没有统一的日志配置文件或初始化
+企业级做法 ：全局日志配置（格式、级别、输出到文件+控制台），UI 操作关键步骤打日志。
+
+### 6. 测试数据管理缺失（中等）
+- 测试数据直接写在 @pytest.mark.parametrize 装饰器中
+- 没有独立的测试数据文件（JSON/YAML/CSV）
+- 没有数据工厂或 Faker 生成随机数据
+- 注册测试每次写死新用户名，没有清理机制
+企业级做法 ： data/ 目录管理测试数据，或使用 Factory/Faker 动态生成。
+
+### 7. 断言方式不规范（轻微）
+- 使用 assert xxx == True 而非直接 assert xxx
+- 没有使用软断言（一个用例中多个断言，第一个失败后面的不执行）
+- 缺少断言失败时的自定义消息
+### 8. 测试用例设计问题（轻微）
+- tests/ui/test_product.py:20 — expected_success 作为函数默认参数而非参数化数据传入，不规范
+- test_product2_function_button 做了太多事情（查看、编辑、删除、导入），违反单一职责，应拆分
+- 注册测试中 page_login 和 page_register 实际上是同一个类的两个实例，令人困惑
+- 没有 __init__.py 包标识
+### 9. conftest.py 设计问题（轻微）
+- conftest.py:29 — SLOW_MODE = True 全局变量 + pause() 函数，用 time.sleep 控制速度，非常原始
+- conftest.py:17 — driver fixture 是 session 级别，所有 UI 测试共享一个浏览器，测试间状态会互相影响
+- general_login 也是 session 级别，登录状态可能被其他用例破坏
+企业级做法 ： driver 通常用 class 或 function scope，配合 autouse 或按需实例化。
+
+### 10. 缺失的关键模块
+缺失模块 
+
+1. pytest.ini / pyproject.toml 	没有 pytest 配置文件，缺少 markers 定义、日志配置, allure 报告配置 
+2. 日志模块            无统一日志初始化 
+3. 截图/录屏          UI 测试失败时无自动截图 
+4. 报告生成         引入了 allure-pytest 但没有配置和使用 
+5. __init__.py              各目录缺少包标识 
+6. 重试机制             UI 测试无失败重试（flaky test 处理） 
+7. CI/CD 配置           无 Jenkinsfile / GitHub Actions
+8.  数据清理           测试后无数据还原机制 
+9. 通用工具类         缺少文件操作、加密解密、时间处理等工具 
+10. BaseAPI 响应封装            没有统一响应模型，每次手动取 result.status_code
