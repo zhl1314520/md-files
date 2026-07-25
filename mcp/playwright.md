@@ -21,8 +21,4 @@
 > claude mcp get playwright   # 查看某个 mcp
 > 
 > claude mcp remove playwright# 删除
-> 
-> 
 > ```
->
-> 
