@@ -34,8 +34,20 @@
 
 - #### 查看某个包的信息
 
-  > #### pip show fastapi 
+  > #### pip show fastapi
 
+## java 集合 & python 集合
 
-​    
+> Java                       Python
+>
+> HashMap     ≈       dict
+> HashSet       ≈       set
+> ArrayList      ≈       list
+> LinkedList    ≈      deque/list
 
+## 包，模块，函数，类
+
+> package = 一个包含多个 module 的目录
+> module = 一个 `.py` 文件
+>
+> 一个 module = 多个类
