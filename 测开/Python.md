@@ -1,20 +1,37 @@
-# FastAPI
-
-## 运行命令
+## FastAPI 运行命令（热启动）
 
 ### uvicorn main:app --reload
 
 - reload：刷新网页不用重启项目，实时更新网页数据
 - uvicorn：是一个**高性能的 ASGI（Asynchronous Server Gateway Interface）服务器**，专为 Python 的异步 Web 框架（如FastAPI）设计
 
-## 中间件与依赖注入的区别
+## 项目根目录下的 requirements.txt
+
+> 一般 Python 项目不会推 .venv，但是会上传 "依赖列表 : requirements.txt"
+
+- 执行
+
+
+```powershell
+pip freeze > requirements.txt
+
+git add requirements.txt
+
+git commit -m "添加依赖列表"
+
+git push
+```
+
+> 别人只需要下面命令就可以恢复环境
+
+```powershell
+pip install -r requirements.txt
+```
+
+## 中间件（middleware）与依赖注入（DI）的区别
 
 - 中间件：处理统一的逻辑（所有位置生效）
 - 依赖注入：处理统一的逻辑（指定的位置生效）Depends
-
-
-
-
 
 ## 虚拟环境 venv
 
@@ -32,9 +49,9 @@
 
 ##  pip 
 
-- #### 查看某个包的信息
-
-  > #### pip show fastapi
+> ```powershell
+> pip show fastapi 	# 展示某个包的版本信息
+> ```
 
 ## java 集合 & python 集合
 

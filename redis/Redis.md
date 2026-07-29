@@ -3,7 +3,7 @@
 
 - ### wsl
 
-- ### hostname -I（查看 wsl 的 ip）
+- ### hostname -I（查看 wsl 的 ip）详细的：ip addr
 
 - ### redis-server --version
 

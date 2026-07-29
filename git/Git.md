@@ -1,28 +1,11 @@
-## 命令行推代码
+## Git 
 
 ```bash
 # 进入项目路径
-如：cd D:\PyCharm\Project\toutiao
+如：cd D:\PyCharm\Project
 
 # 把当前项目变成 Git 仓库
 git init
-
-# 去除 .venv 推送
-# 在项目位置（D:\PyCharm\Project\toutiao）里面新建文件（.gitignore）
-# 里面写入规则
-# 如下：
----------------
-# Python虚拟环境
-.venv/
-venv/
-
-# PyCharm配置
-.idea/
-
-# Python缓存
-__pycache__/
-*.pyc
-----------------
 
 # 添加所有文件
 git add .
@@ -37,7 +20,7 @@ git remote add origin https://gitee.com/你的用户名/仓库名.git
 git push -u origin master/main
 ```
 
-## 后续更新分支
+## 更新
 
 ```bash
 # 添加所有文件
@@ -133,3 +116,7 @@ git branch
 ```bash
 git branch -m master main
 ```
+
+## .gitignore 
+
+> 是项目的工程级文件，放入 Git 上传仓库排除的对象
