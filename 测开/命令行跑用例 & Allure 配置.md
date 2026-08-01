@@ -1,3 +1,14 @@
+## 使用 pytest 命令行跑用例
+> ```powershell
+> pytest tests\ui -v				    # 跑所有 UI 用例
+> 
+> pytest tests\ui\test_login.py -v	# 跑登录模块
+> 
+> pytest tests\ui\test_login.py::test_login -v -s		# 跑单个登录用例
+> 
+> allure server allure-results		# 打开报告
+> ```
+
 ## 如何生成 Allure 测试报告
 
 1. #### 在用例(.py)所在文件夹中：pytest -v --alluredir=allure-results
