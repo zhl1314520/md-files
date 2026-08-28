@@ -6,7 +6,7 @@
 > 
 > pytest tests\ui\test_login.py::test_login -v -s		# 跑单个登录用例
 > 
-> allure server allure-results		# 打开报告
+> allure serve allure-results		# 打开报告
 > ```
 
 ## 如何生成 Allure 测试报告
