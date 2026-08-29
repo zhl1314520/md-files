@@ -42,7 +42,7 @@ docker-compose-local.yml：使用这个文件，按照这个配置文件启动�
 up：启动
 -d：后台运行，没有 -d，一直出现日志
 """
-docker compose -f docker-compose-local.yml up -d
+docker compose -f docker-compose-local.yml up -d		# 提前启动 docker
 
 # 查看后端各个服务启动情况（状态，端口）
 docker compose -f docker-compose-local.yml ps --format "table {{.Service}}\t{{.Status}}\t{{.Ports}}"

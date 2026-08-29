@@ -6,11 +6,11 @@
 
 > /mcp add playwright npx @playwright/mcp@latest		# claude 对话框输入
 
-- 方法 2
+- 方法 2（常用）
 
 > ```powershell
-> 任意盘下> claude mcp add playwright -- npx @playwright/mcp@latest
-> WARN: 只是作用于某个项目，换个项目需要重新添加
+> # 作用整个 user
+> 任意盘下> claude mcp add --scope user playwright -- npx @playwright/mcp@latest
 > ```
 
 ## 常用命令
