@@ -10,16 +10,59 @@ docker system df
 docker builder prune
 ```
 
-## 查看具体的 Images 镜像
+## 查看Docker客户端和服务器版本
 
 ```bash
-docker image ls
+docker version
 ```
 
-## 通过 ID 删除镜像
+## 显示Docker系统级信息，如容器、镜像数量等
 
 ```bash
-docker rmi 04204fc18b5c dad1f0b93201
+docker info
+```
+
+## 镜像管理类
+
+```bash
+docker pull 镜像名				# 默认从 dcoker hub 拉取
+
+docker images				  # 列出本地的 images
+
+docker rmi 镜像id				 # 删除本地的镜像
+
+docker build -t 镜像名			# 使用 Dockerfile 构建新镜像
+```
+
+## 容器生命周期管理
+
+```bash
+docker run [选项] 镜像 			# 创建并启动一个新容器
+-d: 后台运行
+-p 主机端口:容器端口: 端口映射
+--name 容器名: 指定容器名称
+-e KEY=VALUE: 设置环境变量
+-v 主机路径:容器路径: 挂载数据卷
+
+docker ps					   # 查看运行中的容器，+ “-a”查看所有容器
+
+docker stop 容器名/id
+
+docker start 容器名/id
+
+docker restart 容器名/id
+
+docker rm 容器名/id		# 移除一个停止服务的容器
+```
+
+## 容器运维与调试
+
+```bash
+docker exec -it 容器名 bash		# 进入一个正在运行的容器内部，执行交互式命令
+
+docker logs 容器名	
+-f: 实时跟踪日志输出
+--tail N: 显示最后N行日志
 ```
 
 ## Docker 快速跑项目（plane 项目为例）
