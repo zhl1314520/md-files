@@ -3,7 +3,13 @@
 常用：
 
 ```bash
-22端口
+tail -f catlog.log | grep --line-buffered -i "error"
+# 高亮显式
+tail -f catlog.log | grep --line-buffered --color=always -i "error"
+sudo ss -tlnp | grep 8080
+kill 8080
+# 强制
+kill -9 8080   
 ```
 
 例如：
