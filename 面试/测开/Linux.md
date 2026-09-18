@@ -3,19 +3,32 @@
 常用：
 
 ```bash
-tail -f catlog.log | grep --line-buffered -i "error"
-# 高亮显式
-tail -f catlog.log | grep --line-buffered --color=always -i "error"
-sudo ss -tlnp | grep 8080
-kill 8080
-# 强制
-kill -9 8080   
-```
 
-例如：
 
-```bash
-scp file root@ip:/home
+
+# 1. 看设备
+adb devices -l
+# 2. 覆盖安装（测试包）
+adb install -r -t app.apk
+# 3. 清应用数据
+adb shell pm clear com.xxx.xxx
+# 4. 启动 App
+adb shell am start -n com.xxx.xxx/.MainActivity
+# 5. 强制停止 App
+adb shell am force-stop com.xxx.xxx
+# 6. 抓日志
+adb logcat -c
+# 抓 error 日志(显示时间)
+adb logcat -v time *:E
+# 直接抓
+adb logcat *:E
+# 7. 看当前是哪个页面
+adb shell dumpsys window | findstr mCurrentFocus
+
+KEY idx_project_status_updated (project_id, status, updated_time)
+这样 WHERE 和 ORDER BY 都能利用同一个联合索引，索引天然就是按 updated_time 有序的，避免了 filesort，也能快速定位到深分页的起始位置
+
+限制返回条数：对搜索结果强制限制最大返回数量，避免用户输入过于宽泛的关键词导致大量扫描
 ```
 
 ------
@@ -100,14 +113,6 @@ chmod	# 修改文件权限
 tar		# 打包压缩
 ```
 
-## 📌两个文件交叉写入第三个文件
-
-```bash
-paste -d '\n' file1 file2 > file3
-```
-
-------
-
 ## 📌ping百度途径主机如何展示
 
 Windows：
@@ -172,59 +177,9 @@ grep "error" /var/log/messages
 grep -i "failed" /var/log/auth.log
 ```
 
-- ### 删除txt文件
-
-
-```bash
-rm *.txt
-```
-
 - ### 查看磁盘
 
 
 ```bash
 df -h
-```
-
-------
-
-## 📌crontab、uptime、du、netstat作用
-
-- ### crontab
-
-
-​		定时任务。
-
-- ### uptime
-
-
-​		查看系统运行时间和负载。
-
-- ### du（disk usage）
-
-
-​		查看目录大小。
-
-- ### netstat
-
-
-​		查看端口和网络连接。
-
-------
-
-## 📌vi替换字符串
-
-- ### T替换为t
-
-
-```bash
-:%s/T/t/g
-```
-
-- ### 复制一行
-
-
-```bash
-yy
-p
 ```
