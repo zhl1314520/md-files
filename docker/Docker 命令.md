@@ -1,28 +1,35 @@
-## 查看 Docker 占用内存情况
+**启动某个服务**
+
+```bash
+# 通用，把 docker 换成其他即可
+sudo service docker start
+```
+
+**查看 Docker 占用内存情况**
 
 ```bash
 docker system df
 ```
 
-## 删除构建缓存 Build Cache
+**删除构建缓存 Build Cache**
 
 ```bash
 docker builder prune
 ```
 
-## 查看Docker客户端和服务器版本
+**查看Docker客户端和服务器版本**
 
 ```bash
 docker version
 ```
 
-## 显示Docker系统级信息，如容器、镜像数量等
+**显示Docker系统级信息，如容器、镜像数量等**
 
 ```bash
 docker info
 ```
 
-## 镜像管理类
+**镜像管理类**
 
 ```bash
 docker pull 镜像名				# 默认从 dcoker hub 拉取
@@ -34,7 +41,7 @@ docker rmi 镜像id				 # 删除本地的镜像
 docker build -t 镜像名			# 使用 Dockerfile 构建新镜像
 ```
 
-## 容器生命周期管理
+**容器生命周期管理**
 
 ```bash
 docker run [选项] 镜像 			# 创建并启动一个新容器
@@ -55,7 +62,7 @@ docker restart 容器名/id
 docker rm 容器名/id		# 移除一个停止服务的容器
 ```
 
-## 容器运维与调试
+**容器运维与调试**
 
 ```bash
 docker exec -it 容器名 bash		# 进入一个正在运行的容器内部，执行交互式命令
