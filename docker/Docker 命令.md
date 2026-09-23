@@ -1,3 +1,35 @@
+## 基础知识
+
+> ```
+> docker 可以管理镜像和容器
+> 镜像 = “软件的安装模板”，静态的			# 一个打包好的运行环境模板，有mysql环境、python环境。。。
+> 容器 = “这个软件真正运行起来的实例”，运行态
+> 镜像 ：容器 = 1 ：n
+> ```
+>
+> **例子**
+>
+> ```
+> Dockerfile
+> 	|___ Springboot Image
+> 	|___ Springboot Container  -->  启动 Springboot 服务
+> 	
+> 构建 MySQL
+> 	|___ MySQL Image
+> 	|___ MySQL Container  -->  启动 MySQL 服务
+> 	
+> Docker
+> 	|___ Dockerfile
+> 	|		|___ Springboot Image
+> 	|		|___ Springboot Container  -->  启动 Springboot 服务
+> 	|
+> 	|___ MySQL
+> 			|___ MySQL Image
+> 			|___ MySQL Container  -->  启动 MySQL 服务
+> ```
+>
+> 
+
 **启动某个服务**
 
 ```bash
