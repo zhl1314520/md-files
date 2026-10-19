@@ -30,7 +30,6 @@
 > D:\Android\Sdk\cmdline-tools\latest\bin\sdkmanager.bat "build-tools;35.0.0"
 > ```
 >
-> 
 
 ## venv 虚拟环境中下载依赖
 
