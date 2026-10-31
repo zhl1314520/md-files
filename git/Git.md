@@ -170,3 +170,49 @@ git remote set-url origin git@github.com:zhl1314520/application-extension.git
 git push -u origin main
 ```
 
+**团队协作**
+
+- 新人拉项目的 main 分支/或者其他分支到本地
+
+  ```
+  git clone --depth 1 ...
+  git clone ...
+  ```
+
+- 进入拉取的项目的目录，检查本地的分支名、状态（此步非必须）
+
+  ```
+  git branch
+  
+  git status
+  ```
+
+- 多人协作区别点
+
+  ```
+  // 将本地分支改为 main
+  git checkout main
+  
+  // 疑问：为什么之前clone了，现在还需要拉取最新的代码？
+  // 解答：同事也会提交代码，此时github更新，但是本地的代码未更新
+  git pull origin main
+  ```
+
+- 新建分支名，假设为：new-branch
+
+  ```
+  git checkout -b new-branch
+  ```
+
+- 正常的提交
+
+  ```
+  git add .
+  
+  // 这里有提交规范
+  git commit -m "docs(Git.md): update Git.md documentation"
+  
+  git push -u origin new-branch
+  ```
+
+- 进入 github：pull、merge
